@@ -22,7 +22,7 @@ const int DAYS_IN_MONTH = 30;
 const int UP_AND_DOWN = 2;
 
 double allTemp[UP_AND_DOWN][DAYS_IN_MONTH];
-string months[12];
+string months[12] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 int lows[30];
 int highs[30];
 int rows;
