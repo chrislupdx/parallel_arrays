@@ -39,7 +39,8 @@ return 0;
 int loadData(ifstream &inFile, string months[], int lows[], int highs[], int &rows )
 {
 string query;
-char nowhere[1000];
+int length = 250;
+char nowhere[length];
 string recieved;
 string elsewhere;
 query = "temps.txt";
@@ -54,12 +55,14 @@ if (!inFile)
    return -1;
 }
 
-inFile.getline(nowhere, '\0' );
+inFile.read(nowhere, length );
 
-for (int i = 0; i < 1000; i ++)
+
+for (int i = 0; i < length; i ++)
 {
   cout << nowhere[i];
 }
+
 
 inFile.close();
 //can we put filestream data into you know an array or cstring or enum
