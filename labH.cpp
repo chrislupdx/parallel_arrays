@@ -55,14 +55,20 @@ if (!inFile)
    return -1;
 }
 
-inFile.read(nowhere, length );
+//inFile.get(nowhere, length);
+while (!inFile.eof())
+{
+//hitting eOL
+
+inFile.getline(nowhere, length, '\0' );
+
+}
 
 
 for (int i = 0; i < length; i ++)
 {
-  cout << nowhere[i];
+  cout << nowhere[i];  
 }
-
 
 inFile.close();
 //can we put filestream data into you know an array or cstring or enum
