@@ -39,28 +39,30 @@ return 0;
 int loadData(ifstream &inFile, string months[], int lows[], int highs[], int &rows )
 {
 string query;
+char nowhere[1000];
 string recieved;
-
-//cout << "input a file location" << endl;
-//cin >> query;
+string elsewhere;
 query = "temps.txt";
 cout << "loaded" << endl;
 
 inFile.open(query);
 
-//while the filestream is being put into a string
-//so w
+if (!inFile)
+{
+  cout << "Can't open the input file. "
+       << "Bye!" << endl;
+   return -1;
+}
 
-inFile >> recieved;
-//while (inFile >> recieved)
-//{
-  cout << recieved;
-//}
+inFile.getline(nowhere, '\0' );
 
-//can take singular int/string as value I'm trying to figure out how to run 
-//the the plan is to take one thing then split it up
-cout << recieved;
+for (int i = 0; i < 1000; i ++)
+{
+  cout << nowhere[i];
+}
 
+inFile.close();
+//can we put filestream data into you know an array or cstring or enum
 
 return 1;
 }
