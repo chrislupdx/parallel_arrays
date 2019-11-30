@@ -57,6 +57,7 @@ if (!inFile)
    return -1;
 }
 
+//yes we're doing it for the iterating variable, but what's being iterated actually
 for (int i = 0; i < length; i ++)
 {
   inFile.getline(nowhere, length, '\0' );
@@ -85,14 +86,21 @@ if (isupper(nowhere[i]))
   //cout << monthWord[monthPos] << endl;
   ++monthPos;
   }
- if (isalpha(nowhere[i]) && !isupper(nowhere[i]))
+  //if a noncapital character
+ if (isalpha(nowhere[i]) && !isupper(nowhere[i]) )
   {
-  cout << nowhere[i]; 
-  
+//  cout << nowhere[i];
+  monthWord[monthPos] = nowhere[i];
+  ++monthPos; 
+  }
+}
+//uncomment the loop before and check it out yourself
+  for (int i = 0; i < monthPos; i++)
+  {
+  //keeps running for a long ass time
+  cout << monthWord[i];
   }
 
-
-}
   cout << endl;
 
 
