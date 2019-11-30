@@ -43,7 +43,7 @@ char nowhere[length];
 string recieved;
 string elsewhere;
 query = "temps.txt";
-cout << "loaded" << endl;
+//cout << "loaded" << endl;
 
 inFile.open(query);
 
@@ -54,19 +54,32 @@ if (!inFile)
    return -1;
 }
 
-//do we do a conditional thing so it goes off only once?
-
 for (int i = 0; i < length; i ++)
 {
   inFile.getline(nowhere, length, '\0' );
   cout << nowhere[i];  
+
+//detect spaces
+  if (nowhere[i] == ' ')
+  {
+  }
+
+if (isdigit(nowhere[i]))
+  {
+  } 
+
+if (isupper(nowhere[i]))
+  {
+  }
+
+if (nowhere[i] == '\n')
+  {
+  }
+
 }
   cout << endl;
 
 
-
-//we need to put the words (spaces between)
-//we need first number and second number (which are both single chars)
 
 
 inFile.close();
