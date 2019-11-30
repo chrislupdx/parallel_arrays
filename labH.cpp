@@ -32,14 +32,13 @@ int rows;
 //file io with a temps.txt 
 loadData(inFile, months, lows, highs, rows);
 
-
 return 0;
 }
 
 int loadData(ifstream &inFile, string months[], int lows[], int highs[], int &rows )
 {
 string query;
-int length = 250;
+int length = 170;
 char nowhere[length];
 string recieved;
 string elsewhere;
@@ -55,20 +54,20 @@ if (!inFile)
    return -1;
 }
 
-//inFile.get(nowhere, length);
-while (!inFile.eof())
-{
-//hitting eOL
-
-inFile.getline(nowhere, length, '\0' );
-
-}
-
+//do we do a conditional thing so it goes off only once?
 
 for (int i = 0; i < length; i ++)
 {
+  inFile.getline(nowhere, length, '\0' );
   cout << nowhere[i];  
 }
+  cout << endl;
+
+
+
+//we need to put the words (spaces between)
+//we need first number and second number (which are both single chars)
+
 
 inFile.close();
 //can we put filestream data into you know an array or cstring or enum
