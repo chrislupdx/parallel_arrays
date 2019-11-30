@@ -39,7 +39,10 @@ int loadData(ifstream &inFile, string months[], int lows[], int highs[], int &ro
 {
 string query;
 int length = 170;
+int monthLength = 10;
+int monthPos = 0;
 char nowhere[length];
+char monthWord[monthLength];
 string recieved;
 string elsewhere;
 query = "temps.txt";
@@ -57,29 +60,40 @@ if (!inFile)
 for (int i = 0; i < length; i ++)
 {
   inFile.getline(nowhere, length, '\0' );
-  cout << nowhere[i];  
+//  cout << nowhere[i];  
 
 //detect spaces
   if (nowhere[i] == ' ')
   {
   }
-
+//detect if digit
 if (isdigit(nowhere[i]))
   {
   } 
 
-if (isupper(nowhere[i]))
-  {
-  }
-
+//detect new line
 if (nowhere[i] == '\n')
   {
   }
 
+//if you detect a capital letter, store contents[i] till you run into a space
+//as a string and put into in months[0]
+if (isupper(nowhere[i]))
+  {
+  //capital letter is assigned to the first slot of monthWord
+  monthWord[monthPos] = nowhere[i]; 
+  //cout << monthWord[monthPos] << endl;
+  ++monthPos;
+  }
+ if (isalpha(nowhere[i]) && !isupper(nowhere[i]))
+  {
+  cout << nowhere[i]; 
+  
+  }
+
+
 }
   cout << endl;
-
-
 
 
 inFile.close();
