@@ -55,18 +55,17 @@ while (inFile >> recieved) //hrmmm do you wanna use a char array or a string for
 if(recieved.length() == 2) //well hey, number vals are 2 letters
   {
   int number = stoi(recieved);
-  cout << number << endl;
-  //cout << recieved;
+  //cout << number << endl;
   }
 
 if(recieved.length() >= 3) //well hey, months are longer than 3 chars
-  {
-  //cout << recieved;
+  { //can we just stuff it into a string array for each?
+  string months = recieved;
+  cout << months << endl;
   }
 
 
 }
-
 
 
 inFile.close();
