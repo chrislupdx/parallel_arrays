@@ -61,36 +61,32 @@ if (!inFile)
 }
 
 //yes we're doing it for the iterating variable, but what's being iterated actually
-for (int i = 0; i < length; i ++)
-{
+//for (int i = 0; i < length; i ++)
+//{
   //i'm guessing that we could use read :(
-  inFile.getline(nowhere, length, '\0' );
+//  inFile.getline(nowhere, length, '\0' );
   //  cout << nowhere[i];
 
-  //if you detect a capital letter, store contents[i] till you run into a space
-if (isupper(nowhere[i]))
-{
+ //if you detect a capital letter, store contents[i] till you run into a space
+//if (isupper(nowhere[i]))
+//{
   //capital letter is assigned to the first slot of monthWord
-  monthWord[monthPos] = nowhere[i]; 
+//  monthWord[monthPos] = nowhere[i]; 
   //cout << monthWord[monthPos] << endl;
-  ++monthPos; //wats monthPos for and do we really need it
-}
+//  ++monthPos; //wats monthPos for and do we really need it
+//}
 
-if (isalpha(nowhere[i]) && !isupper(nowhere[i]) )
-{
-  monthWord[monthPos] = nowhere[i];
-  ++monthPos; 
-}
-
-if(isdigit(nowhere[i]))
-{ 
-  numCharBuff[numCharBuffPos] = nowhere[i];
-  ++numCharBuffPos;
-}
-
-}
-
-
+//if (isalpha(nowhere[i]) && !isupper(nowhere[i]) )
+//{
+//  monthWord[monthPos] = nowhere[i];
+//  ++monthPos; 
+//}
+//if(isdigit(nowhere[i]))
+//{ 
+// numCharBuff[numCharBuffPos] = nowhere[i]; //puts nums into buffer (as char for storage)
+//  ++numCharBuffPos; //iterator var 
+//}
+//}
   
   //this loop shows how we're putting months into string
 //  for (int i = 0; i < monthPos; i++)
@@ -100,10 +96,13 @@ if(isdigit(nowhere[i]))
 //  }
 
 //  this loop checks how we're putting highs into high
-  for (int i = 0; i < totalNums; i++)
-  {
-  cout << "totalNums are " << numCharBuff[i] << endl;
-  }  
+//for (int i = 0; i < totalNums; i++)
+//{
+//  cout << "totalNums are " << numCharBuff[i] << endl;
+//}  
+
+
+
   cout << endl;
   inFile.close();
 return 1;
