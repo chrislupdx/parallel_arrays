@@ -37,7 +37,6 @@ int loadData(ifstream &inFile, string months[], int lows[], int highs[], int &ro
 {
 int i = 0;
 string query;
-//char recieved[180];
 string recieved;
 char firstNum[1];
 query = "temps.txt";
@@ -55,12 +54,14 @@ while (inFile >> recieved) //hrmmm do you wanna use a char array or a string for
 {
 if(recieved.length() == 2) //well hey, number vals are 2 letters
   {
-  cout << recieved;
+  int number = stoi(recieved);
+  cout << number << endl;
+  //cout << recieved;
   }
 
 if(recieved.length() >= 3) //well hey, months are longer than 3 chars
   {
-  cout << recieved;
+  //cout << recieved;
   }
 
 
