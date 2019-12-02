@@ -38,11 +38,14 @@ return 0;
 int loadData(ifstream &inFile, string months[], int lows[], int highs[], int &rows )
 {
 string query;
-int length = 170;
+int length = 168;
 int monthLength = 10;
 int monthPos = 0;
+int totalNums = 46;
 char nowhere[length];
 char monthWord[monthLength];
+char numCharBuff[totalNums];
+int numCharBuffPos = 0;
 string recieved;
 string elsewhere;
 query = "temps.txt";
@@ -53,59 +56,55 @@ inFile.open(query);
 if (!inFile)
 {
   cout << "Can't open the input file. "
-       << "Bye!" << endl;
-   return -1;
+    << "Bye!" << endl;
+  return -1;
 }
 
 //yes we're doing it for the iterating variable, but what's being iterated actually
 for (int i = 0; i < length; i ++)
 {
+  //i'm guessing that we could use read :(
   inFile.getline(nowhere, length, '\0' );
-//  cout << nowhere[i];  
+  //  cout << nowhere[i];
 
-//detect spaces
-  if (nowhere[i] == ' ')
-  {
-  }
-//detect if digit
-if (isdigit(nowhere[i]))
-  {
-  } 
-
-//detect new line
-if (nowhere[i] == '\n')
-  {
-  }
-
-//if you detect a capital letter, store contents[i] till you run into a space
-//as a string and put into in months[0]
+  //if you detect a capital letter, store contents[i] till you run into a space
 if (isupper(nowhere[i]))
-  {
+{
   //capital letter is assigned to the first slot of monthWord
   monthWord[monthPos] = nowhere[i]; 
   //cout << monthWord[monthPos] << endl;
-  ++monthPos;
-  }
-  //if a noncapital character
- if (isalpha(nowhere[i]) && !isupper(nowhere[i]) )
-  {
-//  cout << nowhere[i];
+  ++monthPos; //wats monthPos for and do we really need it
+}
+
+if (isalpha(nowhere[i]) && !isupper(nowhere[i]) )
+{
   monthWord[monthPos] = nowhere[i];
   ++monthPos; 
-  }
 }
-//uncomment the loop before and check it out yourself
-  for (int i = 0; i < monthPos; i++)
-  {
+
+if(isdigit(nowhere[i]))
+{ 
+  numCharBuff[numCharBuffPos] = nowhere[i];
+  ++numCharBuffPos;
+}
+
+}
+
+
+  
+  //this loop shows how we're putting months into string
+//  for (int i = 0; i < monthPos; i++)
+//  {
   //keeps running for a long ass time
-  cout << monthWord[i];
-  }
+//  cout << monthWord[i];
+//  }
 
+//  this loop checks how we're putting highs into high
+  for (int i = 0; i < totalNums; i++)
+  {
+  cout << "totalNums are " << numCharBuff[i] << endl;
+  }  
   cout << endl;
-
-
-inFile.close();
-//can we put filestream data into you know an array or cstring or enum
-
+  inFile.close();
 return 1;
 }
