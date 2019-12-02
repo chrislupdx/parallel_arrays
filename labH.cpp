@@ -30,17 +30,23 @@ int rows;
 //file io with a temps.txt 
 loadData(inFile, months, lows, highs, rows);
 
+for (int x = 0; x < 12; x++)
+{
+ cout << months[x];
+}
+
+
 return 0;
 }
 
 int loadData(ifstream &inFile, string months[], int lows[], int highs[], int &rows )
 {
 int i = 0;
+int monthsIt = 0;
 string query;
 string recieved;
 char firstNum[1];
 query = "temps.txt";
-
 inFile.open(query);
 
 if (!inFile)
@@ -52,20 +58,23 @@ if (!inFile)
 
 while (inFile >> recieved) //hrmmm do you wanna use a char array or a string for this
 {
+
 if(recieved.length() == 2) //well hey, number vals are 2 letters
   {
   int number = stoi(recieved);
-  //cout << number << endl;
   }
 
 if(recieved.length() >= 3) //well hey, months are longer than 3 chars
-  { //can we just stuff it into a string array for each?
-  string months = recieved;
-  cout << months << endl;
+  {//how do we just cram the whole thing into a strarray 
+   months[monthsIt] = recieved;
+  monthsIt++;
   }
-
-
 }
+
+//for (int i = 0; i < monthsIt; i++)
+//{
+//  cout << months[i];
+//}
 
 
 inFile.close();
