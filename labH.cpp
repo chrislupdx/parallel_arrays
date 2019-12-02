@@ -23,12 +23,10 @@ const int DAYS_IN_MONTH = 30;
 const int UP_AND_DOWN = 2;
 
 double allTemp[UP_AND_DOWN][DAYS_IN_MONTH];
-//string months[12] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 string months[12];
 int lows[30];
 int highs[30];
 int rows;
-
 //file io with a temps.txt 
 loadData(inFile, months, lows, highs, rows);
 
@@ -37,17 +35,11 @@ return 0;
 
 int loadData(ifstream &inFile, string months[], int lows[], int highs[], int &rows )
 {
+int i = 0;
 string query;
-int length = 168;
-int monthLength = 10;
-int monthPos = 0;
-int totalNums = 46;
-char nowhere[length];
-char monthWord[monthLength];
-char numCharBuff[totalNums];
-int numCharBuffPos = 0;
+//char recieved[180];
 string recieved;
-string elsewhere;
+char firstNum[1];
 query = "temps.txt";
 
 inFile.open(query);
@@ -59,12 +51,21 @@ if (!inFile)
   return -1;
 }
 
-
-while (inFile >> recieved)
+while (inFile >> recieved) //hrmmm do you wanna use a char array or a string for this
 {
+if(recieved.length() == 2) //well hey, number vals are 2 letters
+  {
+  cout << recieved;
+  }
 
-cout << recieved << endl;
+if(recieved.length() >= 3) //well hey, months are longer than 3 chars
+  {
+  cout << recieved;
+  }
+
+
 }
+
 
 
 inFile.close();
