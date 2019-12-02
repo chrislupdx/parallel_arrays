@@ -74,22 +74,28 @@ for (int i = 0; i < numsIt; i++)
 
 if (i % 2 == 0) //if i is divisible by 2, it's high
   {
-    numbers[i]  = highs[highsIt];
+    //cout << numbers[i] << endl; //is highs
+    //numbers[i]  = highs[highsIt]; //numbers&highs are both int wtf
+    highs[highsIt] = numbers[i];
     highsIt++;
   }
 
 
 if (!(i % 2 == 0))
   {
-  cout << numbers[i] << endl;
+  //cout << numbers[i] << endl; //is lows
+  //numbers[i] = lows[lowsIt]; //moving numbres into this new array is awful, check type
+  lows[lowsIt] = numbers[i];
+  lowsIt++;
   }
 
 }
 
-for (i = 0; i < 12; i++)
+for (i = 0; i < 13; i++)
   {
-//  cout << highs[i];
-  }
+//  cout << highs[i] << endl;
+  cout << lows[i] << endl; 
+ }
 
 inFile.close();
 
