@@ -7,7 +7,6 @@
 using namespace std;
 
 int loadData(ifstream &infile, string months[], int lows[], int highs[], int &rows);
- //reads from a text file and stores the data in par. arrays
 
 void findLow(int lows[], int rows, int &lowtemp, int &month); 
 //finds and returns the low temp+corresponding month
@@ -27,7 +26,6 @@ string months[12];
 int lows[30];
 int highs[30];
 int rows;
-//file io with a temps.txt 
 loadData(inFile, months, lows, highs, rows);
 
 return 0;
@@ -41,9 +39,8 @@ int numsIt = 0;
 int monthsIt = 0;
 int highsIt = 0;
 int lowsIt = 0;
-string query;
+string query = "temps.txt";
 string recieved;
-query = "temps.txt";
 inFile.open(query);
 
 if (!inFile)
@@ -68,34 +65,21 @@ while (inFile >> recieved)
   }
 }
 
-//work with numbers to get high and low
-for (int i = 0; i < numsIt; i++)
+for (int i = 0; i < numsIt; i++) //work with numbers to get high and low
 {
 
 if (i % 2 == 0) //if i is divisible by 2, it's high
   {
-    //cout << numbers[i] << endl; //is highs
-    //numbers[i]  = highs[highsIt]; //numbers&highs are both int wtf
     highs[highsIt] = numbers[i];
     highsIt++;
   }
 
-
 if (!(i % 2 == 0))
   {
-  //cout << numbers[i] << endl; //is lows
-  //numbers[i] = lows[lowsIt]; //moving numbres into this new array is awful, check type
   lows[lowsIt] = numbers[i];
   lowsIt++;
   }
-
 }
-
-for (i = 0; i < 13; i++)
-  {
-//  cout << highs[i] << endl;
-  cout << lows[i] << endl; 
- }
 
 inFile.close();
 
