@@ -59,11 +59,15 @@ if (!inFile)
   return -1;
 }
 
-inFile >> nowhere;
 
-cout << nowhere;
+while (inFile >> recieved)
+{
 
-  cout << endl;
-  inFile.close();
+cout << recieved << endl;
+}
+
+
+inFile.close();
+
 return 1;
 }
