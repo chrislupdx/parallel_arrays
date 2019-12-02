@@ -40,6 +40,7 @@ int i = 0;
 int numsIt = 0;
 int monthsIt = 0;
 int highsIt = 0;
+int lowsIt = 0;
 string query;
 string recieved;
 query = "temps.txt";
@@ -70,6 +71,7 @@ while (inFile >> recieved)
 //work with numbers to get high and low
 for (int i = 0; i < numsIt; i++)
 {
+
 if (i % 2 == 0) //if i is divisible by 2, it's high
   {
     numbers[i]  = highs[highsIt];
@@ -77,14 +79,16 @@ if (i % 2 == 0) //if i is divisible by 2, it's high
   }
 
 
-//if numbers[i] > numbers[i +1] but cleander, 01/ 23/ 45/ 67/ 89/ 1011/ 1213/
-// cout << numbers[i] << endl;
+if (!(i % 2 == 0))
+  {
+  cout << numbers[i] << endl;
+  }
 
 }
 
 for (i = 0; i < 12; i++)
   {
-  cout << highs[i];
+//  cout << highs[i];
   }
 
 inFile.close();
