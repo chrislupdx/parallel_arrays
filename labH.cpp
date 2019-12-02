@@ -30,7 +30,6 @@ int rows;
 //file io with a temps.txt 
 loadData(inFile, months, lows, highs, rows);
 
-
 return 0;
 }
 
@@ -42,7 +41,6 @@ int numsIt = 0;
 int monthsIt = 0;
 string query;
 string recieved;
-char firstNum[1];
 query = "temps.txt";
 inFile.open(query);
 
@@ -53,9 +51,8 @@ if (!inFile)
   return -1;
 }
 
-while (inFile >> recieved) //hrmmm do you wanna use a char array or a string for this
+while (inFile >> recieved)
 {
-
   if(recieved.length() == 2) //well hey, number vals are 2 letters
   {
     numbers[numsIt] = stoi(recieved); 
@@ -67,6 +64,14 @@ while (inFile >> recieved) //hrmmm do you wanna use a char array or a string for
     months[monthsIt] = recieved;
     monthsIt++;
   }
+}
+
+//work with numbers to get high and low
+for (int i = 0; i < numsIt; i++)
+{
+// cout << numbers[i] << endl;
+
+
 }
 
 
