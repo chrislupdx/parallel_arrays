@@ -23,6 +23,7 @@ const int DAYS_IN_MONTH = 30;
 const int UP_AND_DOWN = 2;
 
 double allTemp[UP_AND_DOWN][DAYS_IN_MONTH];
+<<<<<<< Updated upstream
 //string months[12] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 string months[12];
 int lows[30];
@@ -31,10 +32,62 @@ int rows;
 
 //file io with a temps.txt 
 loadData(inFile, months, lows, highs, rows);
+=======
+string months[12]; //NEEDS VARS
+int lows[30]; //NEEDS VARS
+int highs[30]; //NEEDS VARS
+int rows = 12; //LOL COULD WE HARD CODE THAT
+int month;
+int lowtemp;
+int hightemp;
+cout << "this program takes a file of month, high, and low temp data and" << endl;
+loadData(inFile, months, lows, highs, rows);
+
+findLow(lows, rows, lowtemp, month); //if theres only one row don't run both high+low
+cout << "Lowest temp month is: " << month << " the temp is " << lowtemp << endl; 
+
+findHigh(highs, rows, hightemp, month);
+cout << "Highest temp month is: " << month << " the temp is " << hightemp << endl;
+>>>>>>> Stashed changes
 
 return 0;
 }
 
+<<<<<<< Updated upstream
+=======
+//fine the higest temp and respective month
+void findHigh(int highs[], int rows, int &hightemp, int &month)
+{
+  int highest = highs[0];
+  for (int i = 0; i < rows; i++)
+  {
+    if(highs[i] > highest)
+    {
+    highest = highs[i];
+    month = i;
+    }
+  }
+  hightemp = highest;
+}
+
+
+//find the lowest temp and resspective month
+void findLow(int lows[], int rows, int &lowtemp, int &month)
+{
+  int lowest = lows[0];
+  for (int i = 0; i < rows; i++) //iterate through and compare for the lowest value
+  {
+     if (lows[i] < lowest) 
+      {
+      lowest = lows[i];
+      month = i;  //assign ordinal address to month
+     }
+     lowtemp = lowest;
+  }
+}
+
+//consumes a file input, parses+returns months, high and low temp in arrays respectively
+>>>>>>> Stashed changes
 int loadData(ifstream &inFile, string months[], int lows[], int highs[], int &rows )
 {
 string query;
