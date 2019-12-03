@@ -32,16 +32,16 @@ cout << "takes a file with month, high, and low temp data and prints out the low
 loadData(inFile, months, lows, highs, rows);
 
 cout << "High:" << setw(13) << "Low:" << setw(15) << "Month:" << endl;
-for (int i = 0; i < rows; i++)
+for (int i = 0; i < rows; i++) //iterate through all rows and print values out, tabulated
 {
   cout << highs[i] << setw(15) << lows[i] << setw(15) << months[i] << endl;
 }
   cout << endl;
 
 
-if (!(rows <= 1)) //we need to figure out a way to rig loaddata to modify rows
+if (!(rows < 1)) //if there are +1 rows, find the low and high temps and print them out with months
 {
-  findLow(lows, rows, lowtemp, month); //if theres only one row don't run both high+low
+  findLow(lows, rows, lowtemp, month);
   cout << "Lowest temp month is: " << months[month] << " the temp is " << lowtemp << endl << endl;
 
   findHigh(highs, rows, hightemp, month);
@@ -56,7 +56,7 @@ void findHigh(int highs[], int rows, int &hightemp, int &month)
 {
   cout << "findHigh called" << endl << endl;
   int highest = highs[0];
-  for (int i = 0; i < rows; i++)
+  for (int i = 0; i < rows; i++) //iterate through all rows, comparing for the greatest value
   {
     if(highs[i] > highest)
     {
@@ -97,10 +97,11 @@ int lines = 0;
 string gotLine;
 string query = "temps.txt";
 string recieved;
-inFile.open(query);
+
 cout << "loaddata called" << endl << endl;
 
-if (!inFile)
+inFile.open(query);
+if (!inFile) //if inFile is invalid, kill this operation
 {
   cout << "Can't open the input file. "
     << "Bye!" << endl;
@@ -110,44 +111,41 @@ if (!inFile)
 while (inFile >> recieved) //tried putting my inner get loop before and after all of my if statements, none worked. clearing after use did not work, resorted to this and it worked
 {
 
-  while (getline(inFile, gotLine))
+  while (getline(inFile, gotLine)) //while getline can execute, count rows
   {
     ++lines; 
-    inFile.clear();
   }
 rows = lines;
 }
 inFile.close();
-inFile.clear();
 
 inFile.open(query);
-
-while (inFile >> recieved)
+while (inFile >> recieved) //while the filestream is being passed into a recieving string
 {
 
-  if(recieved.length() == 2) //well hey, number vals are 2 letters
+  if(recieved.length() == 2) //well hey, number vals are 2 letters, we detect for temps
   {
-    if ((numsIt / 2) > rows) //num has highs and lows, therefore 2x
+    if ((numsIt / 2) > rows) //num has highs and lows, if the stream/2 is greater than the rows, kill it
     {
       break;
     }
 
      numbers[numsIt] = stoi(recieved);
-    numsIt++; // i think the stop logic happens here
+    numsIt++;
   }
   if(recieved.length() >= 3) //well hey, months are longer than 3 chars
   {
-    if (monthsIt > rows)
+    if (monthsIt > rows) //if the stream produces more rows than the array length (rows), kill it
     {
       break;
     }
 
     months[monthsIt] = recieved;
-    monthsIt++; //does the stop logic happen here, we don't have rows yet
+    monthsIt++;
   }
 } 
   cout << "number of months in the file: " << monthsIt << endl;
-for (int i = 0; i < numsIt; i++) //work with numbers to get high and low
+for (int i = 0; i < numsIt; i++) //iterate through numbers to get high and low
 {
 
 if (i % 2 == 0) //if i is divisible by 2, it's high
@@ -155,7 +153,7 @@ if (i % 2 == 0) //if i is divisible by 2, it's high
     highs[highsIt] = numbers[i];
     highsIt++;
   }
-if (!(i % 2 == 0))
+if (!(i % 2 == 0)) //if i is not divisible, it's low
   {
   lows[lowsIt] = numbers[i];
   lowsIt++;
