@@ -7,15 +7,14 @@
 using namespace std;
 
 int loadData(ifstream &infile, string months[], int lows[], int highs[], int &rows);
- //reads from a text file and stores the data in par. arrays
 
 void findLow(int lows[], int rows, int &lowtemp, int &month); 
-//finds and returns the low temp+corresponding month
+//finds and returns the lowest temp+corresponding month
 
 void findHigh(int highs[], int rows, int &hightemp, int &month);
- //finds+returns the high temp+corresponding month
+ //finds+returns the highest temp+corresponding month
 
-int main()
+int main() //check that high, low, names can print in mian
 {
 ifstream inFile;
 
@@ -23,34 +22,49 @@ const int DAYS_IN_MONTH = 30;
 const int UP_AND_DOWN = 2;
 
 double allTemp[UP_AND_DOWN][DAYS_IN_MONTH];
-//string months[12] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-string months[12];
-int lows[30];
-int highs[30];
-int rows;
-
-//file io with a temps.txt 
+string months[12]; //NEEDS VARS
+int lows[30]; //NEEDS VARS
+int highs[30]; //NEEDS VARS
+int rows = 12; //LOL COULD WE HARD CODE THAT
+int month;
+int lowtemp = 0;
+cout << "this program takes a file of month, high, and low temp data and" << endl;
 loadData(inFile, months, lows, highs, rows);
 
-return 0;
+findLow(lows, rows, lowtemp, month); //if theres only one row don't run both high+low
+cout << "Lowtemp for the month of " << month << " is " << lowtemp << endl; //write a switch
+
+
+return 0; //at some point print everything out pretty
 }
 
-int loadData(ifstream &inFile, string months[], int lows[], int highs[], int &rows )
+//find the lowest temp and resspective month
+void findLow(int lows[], int rows, int &lowtemp, int &month)
 {
-string query;
-int length = 168;
-int monthLength = 10;
-int monthPos = 0;
-int totalNums = 46;
-char nowhere[length];
-char monthWord[monthLength];
-char numCharBuff[totalNums];
-int numCharBuffPos = 0;
-string recieved;
-string elsewhere;
-query = "temps.txt";
-//cout << "loaded" << endl;
+  int lowest = lows[0];
+  for (int i = 0; i < rows; i++) //iterate through and compare for the lowest value
+  {
+     if (lows[i] < lowest) 
+      {
+      lowest = lows[i];
+      month = i;  //assign ordinal address to month
+     }
+     lowtemp = lowest;
+  }
+}
 
+//consumes a file input, parses+returns months, high and low temp in arrays respectively
+int loadData(ifstream &inFile, string months[], int lows[], int highs[], int &rows )
+{ //how do we want to refactor to include &rows:
+int high_and_low = 24;
+int numbers[high_and_low];
+int i = 0;
+int numsIt = 0;
+int monthsIt = 0;
+int highsIt = 0;
+int lowsIt = 0;
+string query = "temps.txt";
+string recieved;
 inFile.open(query);
 
 if (!inFile)
@@ -60,51 +74,36 @@ if (!inFile)
   return -1;
 }
 
-//yes we're doing it for the iterating variable, but what's being iterated actually
-for (int i = 0; i < length; i ++)
+while (inFile >> recieved)
 {
-  //i'm guessing that we could use read :(
-  inFile.getline(nowhere, length, '\0' );
-  //  cout << nowhere[i];
-
-  //if you detect a capital letter, store contents[i] till you run into a space
-if (isupper(nowhere[i]))
-{
-  //capital letter is assigned to the first slot of monthWord
-  monthWord[monthPos] = nowhere[i]; 
-  //cout << monthWord[monthPos] << endl;
-  ++monthPos; //wats monthPos for and do we really need it
-}
-
-if (isalpha(nowhere[i]) && !isupper(nowhere[i]) )
-{
-  monthWord[monthPos] = nowhere[i];
-  ++monthPos; 
-}
-
-if(isdigit(nowhere[i]))
-{ 
-  numCharBuff[numCharBuffPos] = nowhere[i];
-  ++numCharBuffPos;
-}
-
-}
-
-
-  
-  //this loop shows how we're putting months into string
-//  for (int i = 0; i < monthPos; i++)
-//  {
-  //keeps running for a long ass time
-//  cout << monthWord[i];
-//  }
-
-//  this loop checks how we're putting highs into high
-  for (int i = 0; i < totalNums; i++)
+  if(recieved.length() == 2) //well hey, number vals are 2 letters
   {
-  cout << "totalNums are " << numCharBuff[i] << endl;
-  }  
-  cout << endl;
-  inFile.close();
+    numbers[numsIt] = stoi(recieved); 
+    numsIt++;
+  }
+  if(recieved.length() >= 3) //well hey, months are longer than 3 chars
+  { 
+    months[monthsIt] = recieved;
+    monthsIt++;
+  }
+} //still needs code to not read more rows than the # of slots in arrays
+  cout << "number of months in the file: " << monthsIt << endl;
+
+for (int i = 0; i < numsIt; i++) //work with numbers to get high and low
+{
+
+if (i % 2 == 0) //if i is divisible by 2, it's high
+  {
+    highs[highsIt] = numbers[i];
+    highsIt++;
+  }
+if (!(i % 2 == 0))
+  {
+  lows[lowsIt] = numbers[i];
+  lowsIt++;
+  }
+}
+inFile.close();
+
 return 1;
 }
