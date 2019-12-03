@@ -25,13 +25,15 @@ double allTemp[UP_AND_DOWN][DAYS_IN_MONTH];
 string months[12]; //NEEDS VARS
 int lows[30]; //NEEDS VARS
 int highs[30]; //NEEDS VARS
-int rows; //LOL COULD WE HARD CODE THAT
-int month = 12; //need var
+int rows = 12; //LOL COULD WE HARD CODE THAT
+int month;
 int lowtemp = 0;
 cout << "this program takes a file of month, high, and low temp data and" << endl;
 loadData(inFile, months, lows, highs, rows);
 
-findLow(lows, rows, lowtemp, month);
+findLow(lows, rows, lowtemp, month); //if theres only one row don't run both high+low
+cout << "Lowtemp for the month of " << month << " is " << lowtemp << endl; //write a switch
+
 
 return 0; //at some point print everything out pretty
 }
@@ -40,16 +42,15 @@ return 0; //at some point print everything out pretty
 void findLow(int lows[], int rows, int &lowtemp, int &month)
 {
   int lowest = lows[0];
-  for (int i = 0; i < 12; i++) //iterate through and compare their vals
+  for (int i = 0; i < rows; i++) //iterate through and compare for the lowest value
   {
      if (lows[i] < lowest) 
       {
       lowest = lows[i];
-      }
-  cout << lowest << endl;
+      month = i;  //assign ordinal address to month
+     }
+     lowtemp = lowest;
   }
-
-
 }
 
 //consumes a file input, parses+returns months, high and low temp in arrays respectively
