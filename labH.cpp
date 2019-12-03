@@ -20,14 +20,15 @@ const int DAYS_IN_MONTH = 30;
 const int UP_AND_DOWN = 2;
 
 double allTemp[UP_AND_DOWN][DAYS_IN_MONTH];
-string months[12];
-int lows[30];
-int highs[30];
-int rows; //LOL COULD WE HARD CODE THAT
+int months_in_year = 12;
+string months[months_in_year]; 
+int lows[months_in_year];
+int highs[months_in_year]; 
+int rows; 
 int month;
 int lowtemp;
 int hightemp;
-cout << "this program takes a file of month, high, and low temp data and" << endl << endl;
+cout << "takes a file with month, high, and low temp data and prints out the lowest+highest and the rest of the data" << endl << endl;
 loadData(inFile, months, lows, highs, rows);
 
 cout << "High:" << setw(13) << "Low:" << setw(15) << "Month:" << endl;
@@ -94,11 +95,12 @@ int numsIt = 0;
 int monthsIt = 0;
 int highsIt = 0;
 int lowsIt = 0;
+int lines = 0;
+string gotLine;
 string query = "temps.txt";
 string recieved;
 inFile.open(query);
-
-cout << "Loaddata called" << endl << endl;
+cout << "loaddata called" << endl << endl;
 
 if (!inFile)
 {
@@ -107,21 +109,37 @@ if (!inFile)
   return -1;
 }
 
+
+while (inFile >> recieved) //tried putting my inner get loop before and after all of my if statements, none worked. clearing after use did not work, resorted to this and it worked
+{
+
+  while (getline(inFile, gotLine))
+  {
+ ++lines; 
+  inFile.clear();
+  }
+rows = lines;
+}
+inFile.close();
+inFile.clear();
+
+inFile.open(query);
+
 while (inFile >> recieved)
 {
+
   if(recieved.length() == 2) //well hey, number vals are 2 letters
   {
     numbers[numsIt] = stoi(recieved);
-    numsIt++;
+    numsIt++; // i think the stop logic happens here
   }
   if(recieved.length() >= 3) //well hey, months are longer than 3 chars
   {
     months[monthsIt] = recieved;
-    monthsIt++;
+    monthsIt++; //does the stop logic happen here, we don't have rows yet
   }
-} //still needs code to not read more rows than the # of slots in arrays
+} 
   cout << "number of months in the file: " << monthsIt << endl;
-  rows = monthsIt; //number of months is literally the number of rows
 for (int i = 0; i < numsIt; i++) //work with numbers to get high and low
 {
 
@@ -135,8 +153,9 @@ if (!(i % 2 == 0))
   lows[lowsIt] = numbers[i];
   lowsIt++;
   }
+
 }
-inFile.close();
+
 
 return 0;
 }
