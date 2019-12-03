@@ -27,16 +27,24 @@ int rows; //LOL COULD WE HARD CODE THAT
 int month;
 int lowtemp;
 int hightemp;
-cout << "this program takes a file of month, high, and low temp data and" << endl;
+cout << "this program takes a file of month, high, and low temp data and" << endl << endl;
 loadData(inFile, months, lows, highs, rows);
+
+cout << "High:" << setw(13) << "Low:" << setw(15) << "Month:" << endl;
+for (int i = 0; i < rows; i++)
+{
+  cout << highs[i] << setw(15) << lows[i] << setw(15) << months[i] << endl;
+}
+  cout << endl;
+
 
 if (!(rows <= 1)) //we need to figure out a way to rig loaddata to modify rows
 {
 findLow(lows, rows, lowtemp, month); //if theres only one row don't run both high+low
-cout << "Lowest temp month is: " << month << " the temp is " << lowtemp << endl;
+cout << "Lowest temp month is: " << month << " the temp is " << lowtemp << endl << endl;
 
 findHigh(highs, rows, hightemp, month);
-cout << "Highest temp month is: " << month << " the temp is " << hightemp << endl;
+cout << "Highest temp month is: " << month << " the temp is " << hightemp << endl << endl;
 }
 
 
@@ -47,7 +55,7 @@ return 0;
 //fine the higest temp and respective month
 void findHigh(int highs[], int rows, int &hightemp, int &month)
 {
-  cout << "findHigh called" << endl;
+  cout << "findHigh called" << endl << endl;
   int highest = highs[0];
   for (int i = 0; i < rows; i++)
   {
@@ -63,7 +71,7 @@ void findHigh(int highs[], int rows, int &hightemp, int &month)
 //find the lowest temp and resspective month
 void findLow(int lows[], int rows, int &lowtemp, int &month)
 {
-  cout << "findLow called" << endl;
+  cout << "findLow called" << endl << endl;
   int lowest = lows[0];
   for (int i = 0; i < rows; i++) //iterate through and compare for the lowest value
   {
@@ -89,6 +97,8 @@ int lowsIt = 0;
 string query = "temps.txt";
 string recieved;
 inFile.open(query);
+
+cout << "Loaddata called" << endl << endl;
 
 if (!inFile)
 {
