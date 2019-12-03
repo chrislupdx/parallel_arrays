@@ -41,10 +41,10 @@ for (int i = 0; i < rows; i++)
 if (!(rows <= 1)) //we need to figure out a way to rig loaddata to modify rows
 {
 findLow(lows, rows, lowtemp, month); //if theres only one row don't run both high+low
-cout << "Lowest temp month is: " << month << " the temp is " << lowtemp << endl << endl;
+cout << "Lowest temp month is: " << months[month] << " the temp is " << lowtemp << endl << endl;
 
 findHigh(highs, rows, hightemp, month);
-cout << "Highest temp month is: " << month << " the temp is " << hightemp << endl << endl;
+cout << "Highest temp month is: " << months[month] << " the temp is " << hightemp << endl << endl;
 }
 
 
