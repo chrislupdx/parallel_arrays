@@ -45,12 +45,35 @@ loadData(inFile, months, lows, highs, rows);
 
 findLow(lows, rows, lowtemp, month); //if theres only one row don't run both high+low
 cout << "Lowest temp month is: " << month << " the temp is " << lowtemp << endl; 
+<<<<<<< Updated upstream
 
 findHigh(highs, rows, hightemp, month);
 cout << "Highest temp month is: " << month << " the temp is " << hightemp << endl;
 >>>>>>> Stashed changes
 
 return 0;
+}
+=======
+
+findHigh(highs, rows, hightemp, month);
+cout << "Highest temp month is: " << month << " the temp is " << hightemp << endl;
+>>>>>>> Stashed changes
+
+<<<<<<< Updated upstream
+=======
+//fine the higest temp and respective month
+void findHigh(int highs[], int rows, int &hightemp, int &month)
+{
+  int highest = highs[0];
+  for (int i = 0; i < rows; i++)
+  {
+    if(highs[i] > highest)
+    {
+    highest = highs[i];
+    month = i;
+    }
+  }
+  hightemp = highest;
 }
 
 <<<<<<< Updated upstream
@@ -70,6 +93,7 @@ void findHigh(int highs[], int rows, int &hightemp, int &month)
   hightemp = highest;
 }
 
+>>>>>>> Stashed changes
 
 //find the lowest temp and resspective month
 void findLow(int lows[], int rows, int &lowtemp, int &month)
