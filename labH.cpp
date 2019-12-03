@@ -41,17 +41,15 @@ for (int i = 0; i < rows; i++)
 
 if (!(rows <= 1)) //we need to figure out a way to rig loaddata to modify rows
 {
-findLow(lows, rows, lowtemp, month); //if theres only one row don't run both high+low
-cout << "Lowest temp month is: " << months[month] << " the temp is " << lowtemp << endl << endl;
+  findLow(lows, rows, lowtemp, month); //if theres only one row don't run both high+low
+  cout << "Lowest temp month is: " << months[month] << " the temp is " << lowtemp << endl << endl;
 
-findHigh(highs, rows, hightemp, month);
-cout << "Highest temp month is: " << months[month] << " the temp is " << hightemp << endl << endl;
+  findHigh(highs, rows, hightemp, month);
+  cout << "Highest temp month is: " << months[month] << " the temp is " << hightemp << endl << endl;
 }
-
 
 return 0;
 }
-
 
 //fine the higest temp and respective month
 void findHigh(int highs[], int rows, int &hightemp, int &month)
@@ -109,14 +107,13 @@ if (!inFile)
   return -1;
 }
 
-
 while (inFile >> recieved) //tried putting my inner get loop before and after all of my if statements, none worked. clearing after use did not work, resorted to this and it worked
 {
 
   while (getline(inFile, gotLine))
   {
- ++lines; 
-  inFile.clear();
+    ++lines; 
+    inFile.clear();
   }
 rows = lines;
 }
@@ -130,11 +127,21 @@ while (inFile >> recieved)
 
   if(recieved.length() == 2) //well hey, number vals are 2 letters
   {
-    numbers[numsIt] = stoi(recieved);
+    if ((numsIt / 2) > rows) //num has highs and lows, therefore 2x
+    {
+      break;
+    }
+
+     numbers[numsIt] = stoi(recieved);
     numsIt++; // i think the stop logic happens here
   }
   if(recieved.length() >= 3) //well hey, months are longer than 3 chars
   {
+    if (monthsIt > rows)
+    {
+      break;
+    }
+
     months[monthsIt] = recieved;
     monthsIt++; //does the stop logic happen here, we don't have rows yet
   }
@@ -153,9 +160,7 @@ if (!(i % 2 == 0))
   lows[lowsIt] = numbers[i];
   lowsIt++;
   }
-
 }
-
 
 return 0;
 }
